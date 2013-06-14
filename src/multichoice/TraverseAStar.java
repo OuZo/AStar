@@ -20,14 +20,26 @@ public class TraverseAStar {
     static final int DOWN = 7;
     static final int DOWN_RIGHT = 8;
 
+    private boolean finished = false;
+    
     public TraverseAStar(int[][] map) {
         this.map = map;
     } // TraverseAStar
 
+    public boolean isFinished() {
+        return finished;
+    }
+    
     public boolean inBounds(int col, int row) {
         boolean ret = true;
         try {
             int val = map[col][row];
+            if (val == 9) {
+                map[currentY][currentX] = 5;
+                System.out.println("Found solution");
+                finished = true;
+//                System.exit(0);
+            }
         } catch (ArrayIndexOutOfBoundsException aiobe) {
 //            System.err.println("Out of bounds: [" + col + "][" + row + "]");
             ret = false;
@@ -136,15 +148,16 @@ public class TraverseAStar {
     } // move
 
     public void shift() {
-        map[currentY][currentX] = 7;
+//        map[currentY][currentX] = 7;
+        map[currentY][currentX] = 5;
     } // shift
 
     public boolean solve() {
         boolean ret = false;
 
-        if (map[currentY][currentX] == 9) {
-            ret = true;
-        } // game over
+//        if (map[currentY][currentX] == 9) {
+//            ret = true;
+//        } // game over
 
         // SEARCH LOCAL
 
@@ -210,8 +223,17 @@ public class TraverseAStar {
 //        lm.print();
         System.out.println("");
 
-        System.out.println("MIN POS = " + lm.minPos() + " [" + lm.toString() + "]");
-        move(lm.minPos());
+        
+        int minPos = lm.minPos();
+        
+        if (minPos == -1) {
+            System.err.println("Stuck!");
+            System.exit(minPos);
+        }
+        
+        System.out.println("MIN POS = " + minPos + " [" + lm.toString() + "]");
+        move(minPos);
+        
         
 //        System.out.println("MIN POS = " + lm.bestPos() + " [" + lm.toString() + "]");
 //        move(lm.bestPos());
