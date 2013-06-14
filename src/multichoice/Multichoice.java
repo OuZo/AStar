@@ -39,7 +39,7 @@ public class Multichoice {
             moves++;
         } // while not finished solve
         
-        System.out.println("Found solution in " + moves + " moves");
+        System.out.println("Found solution in " + moves + " moves, with a cost of " + tas.getCost());
         
 
     } // main

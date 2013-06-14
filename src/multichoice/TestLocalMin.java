@@ -38,6 +38,7 @@ public class TestLocalMin {
             System.out.println("ODD");
         }
         
+        
 
     }
     

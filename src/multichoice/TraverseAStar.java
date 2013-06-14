@@ -20,7 +20,9 @@ public class TraverseAStar {
     static final int DOWN = 7;
     static final int DOWN_RIGHT = 8;
 
+    private int cost = 0;
     private boolean finished = false;
+    
     
     public TraverseAStar(int[][] map) {
         this.map = map;
@@ -28,6 +30,10 @@ public class TraverseAStar {
 
     public boolean isFinished() {
         return finished;
+    }
+
+    public int getCost() {
+        return cost;
     }
     
     public boolean inBounds(int col, int row) {
@@ -107,41 +113,49 @@ public class TraverseAStar {
             case UP_LEFT:
                 System.out.println("UP_LEFT");
                 shift();
+                cost += Math.abs((currentX - (currentX - 1))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY -= 1][currentX -= 1] = 8;
                 break;
             case UP:
                 System.out.println("UP");
                 shift();
+                cost += Math.abs((currentX - (currentX))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY -= 1][currentX] = 8;
                 break;
             case UP_RIGHT:
                 System.out.println("UP_RIGHT");
                 shift();
+                cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY -= 1][currentX += 1] = 8;
                 break;
             case LEFT:
                 System.out.println("LEFT");
                 shift();
+                cost += Math.abs((currentX - (currentX - 1))) + Math.abs((currentY - (currentY)));
                 map[currentY][currentX -= 1] = 8;
                 break;
             case RIGHT:
                 System.out.println("RIGHT");
                 shift();
+                cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY)));
                 map[currentY][currentX += 1] = 8;
                 break;
             case DOWN_LEFT:
                 System.out.println("DOWN_LEFT");
                 shift();
+                cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY += 1][currentX -= 1] = 8;
                 break;
             case DOWN:
                 System.out.println("DOWN");
                 shift();
+                cost += Math.abs((currentX - (currentX))) + Math.abs((currentY - (currentY + 1)));
                 map[currentY += 1][currentX] = 8;
                 break;
             case DOWN_RIGHT:
                 System.out.println("DOWN_RIGHT");
                 shift();
+                cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY + 1)));
                 map[currentY += 1][currentX += 1] = 8;
                 break;
         } // switch 
@@ -152,17 +166,11 @@ public class TraverseAStar {
         map[currentY][currentX] = 5;
     } // shift
 
-    public boolean solve() {
-        boolean ret = false;
-
-//        if (map[currentY][currentX] == 9) {
-//            ret = true;
-//        } // game over
+    public void solve() {
 
         // SEARCH LOCAL
 
         lm.clear();
-//        lm.print();
         
         // UP LEFT
         int[] t2 = leftUp(currentX, currentY);
@@ -233,28 +241,6 @@ public class TraverseAStar {
         
         System.out.println("MIN POS = " + minPos + " [" + lm.toString() + "]");
         move(minPos);
-        
-        
-//        System.out.println("MIN POS = " + lm.bestPos() + " [" + lm.toString() + "]");
-//        move(lm.bestPos());
-        
-//        look(currentX,currentY);
-//        
-//        look(right(currentX),currentY);
-//        look(left(currentX),currentY);
-//        look(currentX,up(currentY));
-//        look(currentX,down(currentY));
-//        
-//        int[] temp = rightDown(currentX,currentY);
-//        look(temp[0],temp[1]);
-//        temp = leftDown(currentX,currentY);
-//        look(temp[0],temp[1]);
-//        temp = rightUp(currentX,currentY);
-//        look(temp[0],temp[1]);
-//        temp = leftUp(currentX,currentY);
-//        look(temp[0],temp[1]);
-
-        return ret;
 
     } // solve
 } // TraverseAStar
