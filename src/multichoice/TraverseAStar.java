@@ -148,48 +148,63 @@ public class TraverseAStar {
 
         // SEARCH LOCAL
 
+        lm.clear();
+//        lm.print();
+        
         // UP LEFT
         int[] t2 = leftUp(currentX, currentY);
         if (inBounds(t2[0], t2[1])) {
-            lm.assignPos(UP_LEFT, getVal(t2[0], t2[1]));
+            System.out.println("UP LEFT value = " + getVal(t2[1], t2[0]));
+            lm.assignPos(UP_LEFT, getVal(t2[1], t2[0]));
         } // if valid
 
         // UP
         if (inBounds(currentX, up(currentY))) {
-            lm.assignPos(UP, getVal(currentX, up(currentY)));
+            System.out.println("UP value = " + getVal(up(currentY), currentX));
+            lm.assignPos(UP, getVal(up(currentY), currentX));
         } // if valid
 
-        // RIGHT LEFT
+        // UP RIGHT
         t2 = rightUp(currentX, currentY);
         if (inBounds(t2[0], t2[1])) {
-            lm.assignPos(UP_RIGHT, getVal(t2[0], t2[1]));
+            System.out.println("UP RIGHT value = " + getVal(t2[1], t2[0]));
+            lm.assignPos(UP_RIGHT, getVal(t2[1], t2[0]));
         } // if valid
 
         // LEFT
         if (inBounds(left(currentX), currentY)) {
-            lm.assignPos(LEFT, getVal(currentX, up(currentY)));
+            System.out.println("LEFT value = " + getVal(currentY,left(currentX)));
+            lm.assignPos(LEFT, getVal(currentY,left(currentX)));
         } // if valid
 
         // RIGHT
         if (inBounds(right(currentX), currentY)) {
-            lm.assignPos(RIGHT, getVal(right(currentX), currentY));
+            System.out.println("RIGHT value = " + getVal(currentY,right(currentX)));
+            lm.assignPos(RIGHT, getVal(currentY,right(currentX)));
         } // if valid
 
         // DOWN LEFT 
         t2 = leftDown(currentX, currentY);
+//        t2 = leftDown(currentY,currentX);
+//        System.out.println("T2_X = " + t2[0] + " T2_Y = " + t2[1]);
         if (inBounds(t2[0], t2[1])) {
-            lm.assignPos(DOWN_LEFT, getVal(t2[0], t2[1]));
+//            System.out.println("DOWN LEFT value = " + getVal(t2[1], t2[0]));
+            lm.assignPos(DOWN_LEFT, getVal(t2[1], t2[0]));
         } // if valid
 
         // DOWN
-        if (inBounds(down(currentX), currentY)) {
-            lm.assignPos(DOWN, getVal(currentX, down(currentY)));
+        if (inBounds(currentX, down(currentY))) {
+//            System.out.println("DOWN value = " + getVal(currentX, down(currentY)));
+            System.out.println("DOWN value = " + getVal(down(currentY), currentX));
+            lm.assignPos(DOWN, getVal(down(currentY), currentX));
         } // if valid
 
         // DOWN RIGHT
         t2 = rightDown(currentX, currentY);
         if (inBounds(t2[0], t2[1])) {
-            lm.assignPos(DOWN_RIGHT, getVal(t2[0], t2[1]));
+//            System.out.println("DOWN RIGHT value = " + getVal(t2[0], t2[1]));
+            System.out.println("DOWN RIGHT value = " + getVal(t2[1], t2[0]));
+            lm.assignPos(DOWN_RIGHT, getVal(t2[1], t2[0]));
         } // if valid
 
 //        lm.print();
@@ -197,7 +212,9 @@ public class TraverseAStar {
 
         System.out.println("MIN POS = " + lm.minPos() + " [" + lm.toString() + "]");
         move(lm.minPos());
-        lm = new LocalMap();
+        
+//        System.out.println("MIN POS = " + lm.bestPos() + " [" + lm.toString() + "]");
+//        move(lm.bestPos());
         
 //        look(currentX,currentY);
 //        

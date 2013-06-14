@@ -9,8 +9,10 @@ public class Multichoice {
     public static void print(int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j] > 0) {
+                if ((arr[i][j] > 0) && (arr[i][j] != 7)) {
                     System.out.print("|" + arr[i][j]);
+                } else if ((arr[i][j] > 0) && (arr[i][j] == 7)) {
+                    System.out.print("|$");
                 } else {
                     System.out.print("| ");
                 }
@@ -28,12 +30,11 @@ public class Multichoice {
         int[][] arr = rw.read("large_map.txt");
         print(arr);
 
-
         TraverseAStar tas = new TraverseAStar(arr);
         boolean finished = false;
         while (!finished) {
             tas.solve();
-//            print(arr);
+            print(arr);            
         } // while not finished solve
 
 
