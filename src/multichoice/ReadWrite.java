@@ -3,8 +3,13 @@
 package multichoice;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,5 +83,39 @@ public class ReadWrite {
                 return arr;
  
 	} // read
+    
+     public void write(String path, int[][] arr) {
+         PrintWriter writer = null; 
+        try {
+                     writer = new PrintWriter(path, "UTF-8");
+                     
+                     for (int col = 0; col < arr.length; col++) {
+                         for (int row = 0; row < arr[col].length; row++) {
+                             if (arr[col][row] == -1) {
+                                 writer.print("~");
+                             } else if (arr[col][row] == 1) {
+                                 writer.print(".");
+                             } else if (arr[col][row] == 2) {
+                                 writer.print("*");
+                             } else if (arr[col][row] == 3) {
+                                 writer.print("^");
+                             } else if (arr[col][row] == 5) {
+                                 writer.print("#");
+                             } else if (arr[col][row] == 8) {
+                                 writer.print("@");
+                             } else if (arr[col][row] == 9) {
+                                 writer.print("X");
+                             }
+                         } // row 
+                         writer.println();
+                     } // col
+        } catch (IOException ex) {
+            Logger.getLogger(ReadWrite.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            writer.close();
+        }
+         
+         
+     } // write
     
 } // ReadWrite

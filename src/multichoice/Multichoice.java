@@ -35,11 +35,13 @@ public class Multichoice {
         int moves = 0;
         while (!tas.isFinished()) {
             tas.solve();
-            print(arr); 
+//            print(arr); 
             moves++;
         } // while not finished solve
         
         System.out.println("Found solution in " + moves + " moves, with a cost of " + tas.getCost());
+        
+        rw.write("solution.txt", arr);
         
 
     } // main
