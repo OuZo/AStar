@@ -111,49 +111,49 @@ public class TraverseAStar {
     public void move(int min) {
         switch (min) {
             case UP_LEFT:
-                System.out.println("UP_LEFT");
+//                System.out.println("UP_LEFT");
                 shift();
                 cost += Math.abs((currentX - (currentX - 1))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY -= 1][currentX -= 1] = 8;
                 break;
             case UP:
-                System.out.println("UP");
+//                System.out.println("UP");
                 shift();
                 cost += Math.abs((currentX - (currentX))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY -= 1][currentX] = 8;
                 break;
             case UP_RIGHT:
-                System.out.println("UP_RIGHT");
+//                System.out.println("UP_RIGHT");
                 shift();
                 cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY -= 1][currentX += 1] = 8;
                 break;
             case LEFT:
-                System.out.println("LEFT");
+//                System.out.println("LEFT");
                 shift();
                 cost += Math.abs((currentX - (currentX - 1))) + Math.abs((currentY - (currentY)));
                 map[currentY][currentX -= 1] = 8;
                 break;
             case RIGHT:
-                System.out.println("RIGHT");
+//                System.out.println("RIGHT");
                 shift();
                 cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY)));
                 map[currentY][currentX += 1] = 8;
                 break;
             case DOWN_LEFT:
-                System.out.println("DOWN_LEFT");
+//                System.out.println("DOWN_LEFT");
                 shift();
                 cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY - 1)));
                 map[currentY += 1][currentX -= 1] = 8;
                 break;
             case DOWN:
-                System.out.println("DOWN");
+//                System.out.println("DOWN");
                 shift();
                 cost += Math.abs((currentX - (currentX))) + Math.abs((currentY - (currentY + 1)));
                 map[currentY += 1][currentX] = 8;
                 break;
             case DOWN_RIGHT:
-                System.out.println("DOWN_RIGHT");
+//                System.out.println("DOWN_RIGHT");
                 shift();
                 cost += Math.abs((currentX - (currentX + 1))) + Math.abs((currentY - (currentY + 1)));
                 map[currentY += 1][currentX += 1] = 8;
@@ -175,39 +175,37 @@ public class TraverseAStar {
         // UP LEFT
         int[] t2 = leftUp(currentX, currentY);
         if (inBounds(t2[0], t2[1])) {
-            System.out.println("UP LEFT value = " + getVal(t2[1], t2[0]));
+//            System.out.println("UP LEFT value = " + getVal(t2[1], t2[0]));
             lm.assignPos(UP_LEFT, getVal(t2[1], t2[0]));
         } // if valid
 
         // UP
         if (inBounds(currentX, up(currentY))) {
-            System.out.println("UP value = " + getVal(up(currentY), currentX));
+//            System.out.println("UP value = " + getVal(up(currentY), currentX));
             lm.assignPos(UP, getVal(up(currentY), currentX));
         } // if valid
 
         // UP RIGHT
         t2 = rightUp(currentX, currentY);
         if (inBounds(t2[0], t2[1])) {
-            System.out.println("UP RIGHT value = " + getVal(t2[1], t2[0]));
+//            System.out.println("UP RIGHT value = " + getVal(t2[1], t2[0]));
             lm.assignPos(UP_RIGHT, getVal(t2[1], t2[0]));
         } // if valid
 
         // LEFT
         if (inBounds(left(currentX), currentY)) {
-            System.out.println("LEFT value = " + getVal(currentY,left(currentX)));
+//            System.out.println("LEFT value = " + getVal(currentY,left(currentX)));
             lm.assignPos(LEFT, getVal(currentY,left(currentX)));
         } // if valid
 
         // RIGHT
         if (inBounds(right(currentX), currentY)) {
-            System.out.println("RIGHT value = " + getVal(currentY,right(currentX)));
+//            System.out.println("RIGHT value = " + getVal(currentY,right(currentX)));
             lm.assignPos(RIGHT, getVal(currentY,right(currentX)));
         } // if valid
 
         // DOWN LEFT 
         t2 = leftDown(currentX, currentY);
-//        t2 = leftDown(currentY,currentX);
-//        System.out.println("T2_X = " + t2[0] + " T2_Y = " + t2[1]);
         if (inBounds(t2[0], t2[1])) {
 //            System.out.println("DOWN LEFT value = " + getVal(t2[1], t2[0]));
             lm.assignPos(DOWN_LEFT, getVal(t2[1], t2[0]));
@@ -215,16 +213,14 @@ public class TraverseAStar {
 
         // DOWN
         if (inBounds(currentX, down(currentY))) {
-//            System.out.println("DOWN value = " + getVal(currentX, down(currentY)));
-            System.out.println("DOWN value = " + getVal(down(currentY), currentX));
+//            System.out.println("DOWN value = " + getVal(down(currentY), currentX));
             lm.assignPos(DOWN, getVal(down(currentY), currentX));
         } // if valid
 
         // DOWN RIGHT
         t2 = rightDown(currentX, currentY);
         if (inBounds(t2[0], t2[1])) {
-//            System.out.println("DOWN RIGHT value = " + getVal(t2[0], t2[1]));
-            System.out.println("DOWN RIGHT value = " + getVal(t2[1], t2[0]));
+//            System.out.println("DOWN RIGHT value = " + getVal(t2[1], t2[0]));
             lm.assignPos(DOWN_RIGHT, getVal(t2[1], t2[0]));
         } // if valid
 
